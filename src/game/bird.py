@@ -11,12 +11,13 @@ class Bird(GameObject):
         self.color = color
         self.assets = [pygame.image.load(x) for x in asset]
         self.currentAsset = 0
+        
+        self.bird = self.assets[self.currentAsset//Bird.UPDATE_EVERY] if self.asset else pygame.Surface((self.w, self.h))
+        if not self.asset:
+            self.bird.fill(self.color)
 
     def render(self, surface):
-        bird = self.assets[self.currentAsset//Bird.UPDATE_EVERY] if self.asset else pygame.Surface((self.w, self.h))
-        if not self.asset:
-            bird.fill(self.color)
-        surface.blit(bird, (self.x, self.y))
+        surface.blit(self.bird, (self.x, self.y))
 
     def onUpdate(self):
         self.currentAsset = (self.currentAsset+1) % (3*Bird.UPDATE_EVERY)

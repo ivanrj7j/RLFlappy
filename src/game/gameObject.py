@@ -36,3 +36,6 @@ class GameObject(ABC):
         self.y += self.vY
         self.onUpdate()
         self.render(surface)
+    
+    def __str__(self):
+        return f"Game object at ({self.x}, {self.y}) of dimension ({self.w}, {self.h})"
