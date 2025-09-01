@@ -17,6 +17,8 @@ DIFFICULTY = 0.1
 
 FPS = 244
 
+SCORE = 0
+
 #pygame related objects
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
@@ -66,7 +68,15 @@ while running:
             running = False
             break
 
+        if not pipe.passed and pipe.x+pipe.w < bird.x:
+            SCORE += 1
+            pipe.passed = True
+
     pygame.display.flip()
     clock.tick(FPS)
 
+print("\n\n==============================")
+print("       YOUR SCORE WAS")
+print(f"            {SCORE}")
+print("==============================\n\n")
 pygame.quit()

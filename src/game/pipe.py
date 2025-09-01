@@ -11,6 +11,7 @@ class Pipe(GameObject):
         self.pipe = self.asset if self.asset else pygame.Surface((self.w, self.h))
         if not self.asset:
             self.pipe.fill((0, 255, 0))
+        self.passed = False
 
     def onUpdate(self):
         pass
