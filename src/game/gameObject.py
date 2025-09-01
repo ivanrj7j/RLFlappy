@@ -1,6 +1,9 @@
 from abc import ABC, abstractmethod
 import pygame
 
+def clip(x, minVal=-60, maxVal=100):
+    return min(maxVal, max(minVal, x))
+
 class GameObject(ABC):
     def __init__(self, x:float, y:float, w:float, h:float, asset:str=None):
         self.x = x
@@ -22,6 +25,9 @@ class GameObject(ABC):
     def applyForce(self, x:float, y:float):
         self.vX += x
         self.vY += y
+
+        self.vX = clip(self.vX)
+        self.vY = clip(self.vY)
 
     @abstractmethod
     def render(self, surface:pygame.Surface):

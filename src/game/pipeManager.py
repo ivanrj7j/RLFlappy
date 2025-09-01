@@ -1,5 +1,5 @@
 from collections import deque
-from random import random
+from random import random, randint
 from itertools import chain
 
 from .pipe import Pipe
@@ -7,7 +7,7 @@ from .pipe import Pipe
 
 class PipeManager:
     PIPE_WIDTH = 52
-    PIPE_DISTANCE = 45
+    PIPE_DISTANCE = 64
     def __init__(self, screenWidth:float, screenHeight:float, difficulty:float, p=3/244):
         # p is the probablity that a pipe spawns
         self.w = screenWidth
@@ -16,7 +16,7 @@ class PipeManager:
         
         pipes = []
         for i in range(10):
-            pipes.extend(self.generatePipePair(self.w + max(10, i*(PipeManager.PIPE_DISTANCE + PipeManager.PIPE_WIDTH))))
+            pipes.extend(self.generatePipePair(self.w + max(10, i*(PipeManager.PIPE_DISTANCE + PipeManager.PIPE_WIDTH + randint(0, 30)))))
         self.q = deque(pipes)
 
     def generatePipePair(self, x:float):
@@ -37,7 +37,7 @@ class PipeManager:
         while len(self.q) > 0 and self.q[0].x < -PipeManager.PIPE_WIDTH:
             self.q.popleft()
             if(len(self.q)) <= 18:
-                self.q.extend(self.generatePipePair(self.q[-1].x + (PipeManager.PIPE_DISTANCE + PipeManager.PIPE_WIDTH)))
+                self.q.extend(self.generatePipePair(self.q[-1].x + (PipeManager.PIPE_DISTANCE + PipeManager.PIPE_WIDTH + randint(0, 30))))
 
 
         for pipe in self.q:
