@@ -30,7 +30,11 @@ class PipeManager:
         self.h = screenHeight
         self.difficulty = difficulty*3
         self.last_center_y = None
-        
+        self.q:deque = None
+
+        self.reset()
+
+    def reset(self):
         pipes = []
         for i in range(10):
             pipes.extend(self.generatePipePair(self.w + max(10, i*(PipeManager.MIN_PIPE_DISTANCE + PipeManager.PIPE_WIDTH + randint(0, 30)))))

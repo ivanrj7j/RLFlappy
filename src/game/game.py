@@ -22,6 +22,15 @@ class FlappyGame:
         self.score = 0
         self.running = True
 
+        self.onUpdateMethods = []
+        self.onPointMethods = []
+
+    def addUpdateListener(self, func):
+        self.onUpdateMethods.append(func)
+
+    def addPointListener(self, func):
+        self.onPointMethods.append(func)
+
     @staticmethod
     def isColliding(a: GameObject, b: GameObject):
         return not (
@@ -59,6 +68,11 @@ class FlappyGame:
                 if not pipe.passed and pipe.x+pipe.w < self.bird.x:
                     self.score += 1
                     pipe.passed = True
+                    for pointMethod in self.onPointMethods:
+                        pointMethod()
+
+            for updateMethod in self.onUpdateMethods:
+                updateMethod()
 
             pygame.display.flip()
             self.clock.tick(self.FPS)
