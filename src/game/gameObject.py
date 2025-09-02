@@ -5,6 +5,9 @@ def clip(x, minVal=-60, maxVal=100):
     return min(maxVal, max(minVal, x))
 
 class GameObject(ABC):
+    MIN_VEL = -60
+    MAX_VEL = 100
+
     def __init__(self, x:float, y:float, w:float, h:float, asset:str=None):
         self.x = x
         self.y = y
@@ -26,8 +29,8 @@ class GameObject(ABC):
         self.vX += x
         self.vY += y
 
-        self.vX = clip(self.vX)
-        self.vY = clip(self.vY)
+        self.vX = clip(self.vX, GameObject.MIN_VEL, GameObject.MAX_VEL)
+        self.vY = clip(self.vY, GameObject.MIN_VEL, GameObject.MAX_VEL)
 
     @abstractmethod
     def render(self, surface:pygame.Surface):
