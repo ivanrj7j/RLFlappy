@@ -24,5 +24,8 @@ class Bird(GameObject):
             
         surface.blit(self.bird, (self.x, self.y))
 
+    def jump(self):
+        self.applyForce(0, -1.5)
+
     def onUpdate(self):
         self.currentAsset = (self.currentAsset+1) % (3*Bird.UPDATE_EVERY)

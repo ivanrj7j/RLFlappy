@@ -50,10 +50,10 @@ class FlappyGame:
                     self.running = False
                 if event.type == pygame.MOUSEBUTTONUP:
                     if event.button == 1:
-                        self.bird.applyForce(0, -1.5)
+                        self.bird.jump()
                 elif event.type == pygame.KEYUP:
                     if event.key in (pygame.K_w, pygame.K_SPACE, pygame.K_UP):
-                        self.bird.applyForce(0, -1.5)
+                        self.bird.jump()
 
             self.pipeManager.update(self.screen)
             self.bird.update(self.screen)
