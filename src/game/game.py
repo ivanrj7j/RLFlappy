@@ -16,8 +16,8 @@ class FlappyGame:
         self.screen = pygame.display.set_mode((self.SCREEN_WIDTH, self.SCREEN_HEIGHT))
         self.clock = pygame.time.Clock()
         pygame.display.set_caption("RLFlappy")
-        self.backgroundImage = pygame.image.load("../flappy-bird-assets/sprites/background-day.png").convert()
-        self.bird = Bird((self.SCREEN_WIDTH-self.BIRD_WIDTH)/2, (self.SCREEN_HEIGHT-self.BIRD_HEIGHT)/2, self.BIRD_WIDTH, self.BIRD_HEIGHT, ["../flappy-bird-assets/sprites/redbird-upflap.png", "../flappy-bird-assets/sprites/redbird-midflap.png", "../flappy-bird-assets/sprites/redbird-downflap.png"])
+        self.backgroundImage = pygame.image.load("flappy-bird-assets/sprites/background-day.png").convert()
+        self.bird = Bird((self.SCREEN_WIDTH-self.BIRD_WIDTH)/2, (self.SCREEN_HEIGHT-self.BIRD_HEIGHT)/2, self.BIRD_WIDTH, self.BIRD_HEIGHT, ["flappy-bird-assets/sprites/redbird-upflap.png", "flappy-bird-assets/sprites/redbird-midflap.png", "flappy-bird-assets/sprites/redbird-downflap.png"])
         self.pipeManager = PipeManager(self.SCREEN_WIDTH, self.SCREEN_HEIGHT, self.DIFFICULTY)
         self.score = 0
         self.running = True
